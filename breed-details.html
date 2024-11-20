@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breed Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .details {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .details h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+
+        .details p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const breed = urlParams.get("breed");
+            const age = urlParams.get("age");
+            const weight = urlParams.get("weight");
+            const gender = urlParams.get("gender");
+
+            const breedData = {
+                ShihTzu: {
+                    image: "shih-tzu.jpg",
+                    food: "Dry kibble, lean meat, and vegetables.",
+                    health: "Regular grooming and dental care are essential.",
+                    living: "Indoor living with moderate playtime.",
+                    medicine: "Heartworm prevention, flea control.",
+                    products: "Brushes, nail clippers, and chew toys."
+                },
+                Labrador: {
+                    image: "labrador.jpg",
+                    food: "High-protein dog food, occasional treats.",
+                    health: "Needs regular exercise and joint care.",
+                    living: "Large yard or open space preferred.",
+                    medicine: "Hip dysplasia supplements, deworming.",
+                    products: "Fetch toys, large dog beds."
+                },
+                Husky: {
+                    image: "husky.jpg",
+                    food: "High-quality dog food with a focus on protein and fat.",
+                    health: "Thick coat requires regular grooming, prone to hip issues.",
+                    living: "Cool climates with space for exercise.",
+                    medicine: "Flea and tick prevention, joint supplements.",
+                    products: "Harnesses for pulling, cooling mats."
+                },
+                GoldenRetriever: {
+                    image: "golden-retriever.jpg",
+                    food: "Balanced diet with lean proteins and omega-3 fatty acids.",
+                    health: "Prone to skin allergies and joint problems.",
+                    living: "Large homes or yards with active families.",
+                    medicine: "Ear infection treatments, anti-inflammatory meds.",
+                    products: "Frisbees, soft bedding, and chew toys."
+                },
+                Doberman: {
+                    image: "doberman.jpg",
+                    food: "High-protein diet with essential vitamins and minerals.",
+                    health: "Needs regular exercise to avoid obesity, heart screening.",
+                    living: "Spacious areas with warm climates preferred.",
+                    medicine: "Heartworm prevention, multivitamins.",
+                    products: "Training collars, agility toys."
+                },
+                GermanShepherd: {
+                    image: "german-shepherd.jpg",
+                    food: "Large-breed dog food rich in protein and healthy fats.",
+                    health: "Regular hip and elbow checks, prone to digestive issues.",
+                    living: "Open spaces with lots of mental stimulation.",
+                    medicine: "Joint care supplements, digestive enzymes.",
+                    products: "Tug toys, puzzle feeders, and durable beds."
+                },
+                Siamese: {
+                    image: "siamese.jpg",
+                    food: "High-quality protein-rich food.",
+                    health: "Regular grooming and dental care are essential.",
+                    living: "Indoor cats with access to playtime.",
+                    medicine: "Vaccines, flea control.",
+                    products: "Scratching posts, cat toys."
+                },
+                Persian: {
+                    image: "persian.jpg",
+                    food: "Dry food and occasional wet food.",
+                    health: "Prone to eye and skin conditions.",
+                    living: "Indoor living in a cool environment.",
+                    medicine: "Regular eye cleaning and deworming.",
+                    products: "Brushes, litter boxes, and cat beds."
+                },
+                MaineCoon: {
+                    image: "maine-coon.jpg",
+                    food: "Protein-rich food with added fiber.",
+                    health: "Genetic testing for heart disease, regular grooming.",
+                    living: "Active indoors or outdoors with supervision.",
+                    medicine: "Joint supplements and flea treatment.",
+                    products: "Toys, grooming tools, cat trees."
+                },
+                Ragdoll: {
+                    image: "ragdoll.jpg",
+                    food: "High-quality protein-rich food.",
+                    health: "Prone to heart and kidney problems.",
+                    living: "Indoor living, loves cuddling with owners.",
+                    medicine: "Regular vet checkups for kidney issues.",
+                    products: "Soft bedding, interactive toys, and treats."
+                },
+                Birman: {
+                    image: "birman.jpg",
+                    food: "High-quality protein-rich food with added fiber.",
+                    health: "Prone to respiratory issues, regular grooming.",
+                    living: "Indoor cats, enjoys being around family.",
+                    medicine: "Routine vaccinations, flea control.",
+                    products: "Cat trees, scratching posts, interactive toys."
+                },
+                ScottishFold: {
+                    image: "scottish-fold.jpg",
+                    food: "Dry and wet food high in protein.",
+                    health: "Prone to joint and ear problems.",
+                    living: "Indoor living, prefers quiet environments.",
+                    medicine: "Joint supplements, ear cleaning.",
+                    products: "Scratching posts, cozy beds, and toys."
+                },
+                Goldfish: {
+                    image: "goldfish.jpg",
+                    food: "Flake food, pellets, live food.",
+                    health: "Prone to swim bladder disease, fungal infections.",
+                    living: "In an aquarium with a good filtration system.",
+                    medicine: "Anti-fungal treatments.",
+                    products: "Aquarium filters, water conditioners."
+                },
+                Betta: {
+                    image: "betta.jpg",
+                    food: "Special Betta pellets, frozen/live food.",
+                    health: "Sensitive to poor water conditions.",
+                    living: "In small tanks or bowls, warm water.",
+                    medicine: "Fungal and bacterial treatments.",
+                    products: "Betta tanks, aquarium heaters."
+                },
+                Guppy: {
+                    image: "guppy.jpg",
+                    food: "Flake food, pellets, live food, and plant matter.",
+                    health: "Prone to fin rot and swim bladder disease.",
+                    living: "In a well-planted aquarium with a steady temperature.",
+                    medicine: "Anti-fungal treatments, bacterial treatments.",
+                    products: "Aquarium plants, water conditioners, filtration systems."
+                },
+                Angelfish: {
+                    image: "angelfish.jpg",
+                    food: "High-quality flakes, live and frozen food.",
+                    health: "Prone to velvet disease and white spot.",
+                    living: "A well-planted tank with plenty of space.",
+                    medicine: "Anti-parasitic treatments, anti-fungal treatments.",
+                    products: "Aquarium decorations, filtration systems, water conditioners."
+                },
+                Clownfish: {
+                    image: "clownfish.jpg",
+                    food: "Flake food, live food, and occasional frozen food.",
+                    health: "Susceptible to ich and marine velvet.",
+                    living: "In a reef aquarium with live rock and anemones.",
+                    medicine: "Anti-parasitic treatments, copper-based medication.",
+                    products: "Aquarium decorations, water conditioners, live rock."
+                },
+                NeonTetra: {
+                    image: "neon-tetra.jpg",
+                    food: "Flake food, micro pellets, and live food.",
+                    health: "Prone to neon tetra disease and fin rot.",
+                    living: "In schools, in a well-planted aquarium with low light.",
+                    medicine: "Anti-parasitic treatments, antibiotics for bacterial infections.",
+                    products: "Aquarium plants, water conditioners, fish food."
+                },
+                Parrot: {
+                    image: "parrot.jpg",
+                    food: "Seeds, fruits, and vegetables.",
+                    health: "Need regular beak and feather care.",
+                    living: "Indoor cages with room to fly.",
+                    medicine: "Vitamin supplements, deworming.",
+                    products: "Cages, toys, perches."
+                },
+                Canary: {
+                    image: "canary.jpg",
+                    food: "Specialized canary seeds.",
+                    health: "Prone to respiratory infections.",
+                    living: "Small cages, away from drafts.",
+                    medicine: "Respiratory treatments.",
+                    products: "Cages, singing toys, mirrors."
+                },
+                Macaw: {
+                    image: "macaw.jpg",
+                    food: "Seeds, fruits, and vegetables, with occasional nuts.",
+                    health: "Needs beak care, prone to feather plucking.",
+                    living: "Indoor cages with plenty of space to fly.",
+                    medicine: "Vitamin supplements, deworming.",
+                    products: "Cages, perches, toys, and bird stands."
+                },
+                Finch: {
+                    image: "finch.jpg",
+                    food: "Finch seed mix, fresh vegetables.",
+                    health: "Prone to respiratory infections, needs regular beak care.",
+                    living: "Small cages or aviaries, away from drafts.",
+                    medicine: "Antibiotics for respiratory infections.",
+                    products: "Cages, seed dispensers, bath stations."
+                },
+                Cockatiel: {
+                    image: "cockatiel.jpg",
+                    food: "Pellets, seeds, fruits, and leafy vegetables.",
+                    health: "Prone to feather plucking, needs regular grooming.",
+                    living: "Indoor cages with room to fly and play.",
+                    medicine: "Fungal and bacterial treatments.",
+                    products: "Cages, toys, perches, and bird baths."
+                },
+                Lovebird: {
+                    image: "lovebird.jpg",
+                    food: "Seed mixes, fruits, vegetables, and nuts.",
+                    health: "Prone to respiratory infections, needs regular beak care.",
+                    living: "Small cages, prefers companionship.",
+                    medicine: "Respiratory treatments, deworming.",
+                    products: "Cages, toys, and perches."
+                }
+            };
+
+            const breedInfo = breedData[breed];
+            if (breedInfo) {
+                document.getElementById("breed-name").textContent = breed;
+                document.getElementById("breed-image").src = breedInfo.image;
+                document.getElementById("food").textContent = breedInfo.food;
+                document.getElementById("health").textContent = breedInfo.health;
+                document.getElementById("living").textContent = breedInfo.living;
+                document.getElementById("medicine").textContent = breedInfo.medicine;
+                document.getElementById("products").textContent = breedInfo.products;
+                document.getElementById("age-info").textContent = age ? `${age} years` : "N/A";
+                document.getElementById("weight-info").textContent = weight ? `${weight} kg` : "N/A";
+                document.getElementById("gender-info").textContent = gender ? gender : "N/A";
+            }
+
+            document.getElementById("submit-feedback").addEventListener("click", function () {
+                const breed = urlParams.get("breed");
+                window.location.href = `end.html?breed=${breed}`;
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="details">
+            <h2 id="breed-name">Breed Name</h2>
+            <p><strong>Food:</strong> <span id="food"></span></p>
+            <p><strong>Health:</strong> <span id="health"></span></p>
+            <p><strong>Living Conditions:</strong> <span id="living"></span></p>
+            <p><strong>Medicine:</strong> <span id="medicine"></span></p>
+            <p><strong>Products:</strong> <span id="products"></span></p>
+            <p><strong>Age:</strong> <span id="age-info"></span></p>
+            <p><strong>Weight:</strong> <span id="weight-info"></span></p>
+            <p><strong>Gender:</strong> <span id="gender-info"></span></p>
+            <button id="submit-feedback">Submit</button>
+        </div>
+        <div class="image">
+            <img id="breed-image" src="" alt="Breed Image">
+        </div>
+    </div>
+</body>
+
+</html>

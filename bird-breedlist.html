@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 600px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .breeds-list {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .breeds-column {
+            width: 45%;
+        }
+
+        .breeds-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .breeds-list li {
+            margin: 5px 0;
+        }
+
+        .breeds-list a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .breeds-list a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Select a Bird Breed</h1>
+        <div class="breeds-list">
+            <div class="breeds-column">
+                <ul>
+                    <li><a href="info-page.html?breed=Parrot" target="_blank">Parrot</a></li>
+                    <li><a href="info-page.html?breed=Canary" target="_blank">Canary</a></li>
+                    <li><a href="info-page.html?breed=Macaw" target="_blank">Macaw</a></li>
+                </ul>
+            </div>
+            <div class="breeds-column">
+                <ul>
+                    <li><a href="info-page.html?breed=Finch" target="_blank">Finch</a></li>
+                    <li><a href="info-page.html?breed=Cockatiel" target="_blank">Cockatiel</a></li>
+                    <li><a href="info-page.html?breed=Lovebird" target="_blank">Lovebird</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
